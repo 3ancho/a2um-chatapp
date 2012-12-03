@@ -50,14 +50,11 @@ server.listen(app.get('port'), function(){
 
 
 io.sockets.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-      console.log(data);
-  });
+  socket.emit('news', {data: 'connected'});
 
-  socket.on('click', function (data) {
-      console.log("click event");
+  socket.on('message', function (data) {
       console.log(data);
+      socket.broadcast.emit('message', data);
   });
 });
 

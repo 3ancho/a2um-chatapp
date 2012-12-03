@@ -15,6 +15,3 @@ exports.about = function(req, res){
   res.render('about', { page_title: 'About | Chat room' });
 };
 
-exports.message = function(req, res){
-  res.render('message', { page_title: 'Message | Chat room' });
-};

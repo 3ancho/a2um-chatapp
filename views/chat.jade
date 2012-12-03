@@ -7,7 +7,10 @@ block scripts
         var socket = io.connect('http://localhost:3000');
         socket.on('news', function (data) {
            console.log(data);
-           socket.emit('my other event', { my: 'data' });
+        });
+        socket.on('message', function (data) {
+           console.log(data);
+           $('chat').text(data);
         });
         $(document).ready(function() {
             $("#hello").click(function() {
@@ -15,7 +18,7 @@ block scripts
                 if (!nickname) {
                   nickname = "anonymous_user";
                 }
-                socket.emit("click", {user: nickname, message: $("#text").val()});
+                socket.emit("message", {user: nickname, message: $("#text").val()});
             });
         }) 
         
@@ -31,3 +34,6 @@ block content
     br
     label Message:
       textarea()#text
+
+    label Chat:
+      textarea()#chat
